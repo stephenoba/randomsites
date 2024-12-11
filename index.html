@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Notepad</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 300px;
+            font-size: 16px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        #message {
+            margin-top: 10px;
+            color: green;
+            font-weight: bold;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <h1>Online Notepad</h1>
+    <textarea id="notepad" placeholder="Start typing or paste your content here..."></textarea>
+    <div id="message">Message Sent!!!</div>
+
+    <script>
+        const notepad = document.getElementById('notepad');
+        const message = document.getElementById('message');
+
+        let timeout;
+
+        const showMessage = () => {
+            clearTimeout(timeout); // Clear any existing timeout
+
+            timeout = setTimeout(() => {
+                message.style.visibility = 'visible';
+
+                // Optionally hide the message after some time
+                setTimeout(() => {
+                    message.style.visibility = 'hidden';
+                }, 3000);
+            }, 5000);
+        };
+
+        notepad.addEventListener('paste', showMessage);
+        notepad.addEventListener('input', showMessage);
+    </script>
+</body>
+</html>
