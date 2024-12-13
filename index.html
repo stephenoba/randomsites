@@ -67,6 +67,15 @@
         font-size: 16px;
         margin-top: 20px;
       }
+      .success-message {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: rgb(8, 74, 15);
+        font-size: 48px;
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
@@ -106,6 +115,13 @@
           );
           confirmationContainer.innerHTML =
             "<span># User: You can proceed to checkout!</span>";
+        });
+
+      document
+        .getElementById("checkout-button")
+        .addEventListener("click", function () {
+          document.querySelector(".checkout-container").innerHTML =
+            '<div class="success-message">Success!!!</div>';
         });
     </script>
   </body>
