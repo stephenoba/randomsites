@@ -3,74 +3,157 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign In</title>
+    <title>Personal and Employment Details Form</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
+      * {
+        box-sizing: border-box;
+      }
       body {
-        font-family: Arial, sans-serif;
+        font-family: "Roboto", sans-serif;
+        background-color: #f4f7fc;
+        margin: 0;
+        padding: 20px;
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        margin: 0;
-        background-color: #f4f4f4;
       }
-      .signin-container {
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
+      .form-container {
+        background: #ffffff;
+        padding: 2rem;
+        border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
         width: 100%;
-        max-width: 400px;
       }
-      .signin-container h2 {
+      .form-header {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
         text-align: center;
-        margin-bottom: 20px;
       }
       .form-group {
-        margin-bottom: 15px;
+        margin-bottom: 1rem;
       }
       .form-group label {
         display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
       }
       .form-group input {
         width: 100%;
-        padding: 10px;
+        padding: 0.75rem;
+        font-size: 1rem;
         border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 16px;
+        border-radius: 5px;
+        transition: border-color 0.3s;
       }
-      .signin-btn {
-        display: block;
-        width: 100%;
-        padding: 10px;
+      .form-group input:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+      .form-submit {
+        text-align: center;
+      }
+      .form-submit button {
         background-color: #007bff;
-        color: #fff;
+        color: #ffffff;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
         border: none;
-        border-radius: 4px;
-        font-size: 16px;
+        border-radius: 5px;
         cursor: pointer;
         transition: background-color 0.3s;
       }
-      .signin-btn:hover {
+      .form-submit button:hover {
         background-color: #0056b3;
       }
     </style>
   </head>
   <body>
-    <div class="signin-container">
-      <h2>Enter email and password to proceed</h2>
-      <form action="https://mail.google.com" method="GET">
+    <div class="form-container">
+      <div class="form-header">Personal and Employment Details Form</div>
+      <form action="#" method="POST">
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" required />
+        </div>
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob" required />
+        </div>
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <input type="text" id="gender" name="gender" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
           <input type="email" id="email" name="email" required />
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" required />
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required />
         </div>
-        <button type="submit" class="signin-btn">Next</button>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            placeholder="Street"
+            required
+          />
+          <input
+            type="text"
+            id="city"
+            name="city"
+            placeholder="City"
+            required
+          />
+          <input
+            type="text"
+            id="state"
+            name="state"
+            placeholder="State"
+            required
+          />
+          <input
+            type="text"
+            id="zip"
+            name="zip"
+            placeholder="ZIP Code"
+            required
+          />
+          <input
+            type="text"
+            id="country"
+            name="country"
+            placeholder="Country"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="occupation">Occupation</label>
+          <input type="text" id="occupation" name="occupation" required />
+        </div>
+        <div class="form-group">
+          <label for="companyName">Company Name</label>
+          <input type="text" id="companyName" name="companyName" required />
+        </div>
+        <div class="form-group">
+          <label for="workEmail">Work Email</label>
+          <input type="email" id="workEmail" name="workEmail" required />
+        </div>
+        <div class="form-group">
+          <label for="workPhone">Work Phone</label>
+          <input type="tel" id="workPhone" name="workPhone" required />
+        </div>
+        <div class="form-submit">
+          <button type="submit">Submit</button>
+        </div>
       </form>
     </div>
   </body>
