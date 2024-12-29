@@ -3,136 +3,326 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reimbursement Form</title>
+    <title>Chat Application Interface</title>
     <style>
       body {
-        font-family: Arial, sans-serif;
         margin: 0;
-        padding: 0;
-        background-color: #f9f9f9;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f2f5;
         color: #333;
       }
-      .form-container {
-        max-width: 600px;
-        margin: 50px auto;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        border: 1px solid #ddd;
-      }
-      .form-container h1 {
-        text-align: center;
-        margin-bottom: 20px;
+
+      .navbar {
+        background-color: #e24a90;
+        color: #fff;
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
         font-size: 24px;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .navbar span {
+        margin-left: 10px;
+      }
+
+      .container {
+        display: flex;
+        height: calc(100vh - 65px);
+      }
+
+      .sidebar {
+        width: 30%;
+        background-color: #fff;
+        border-right: 1px solid #ddd;
+        overflow-y: auto;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .chat-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .chat-item {
+        position: relative;
+        padding: 15px;
+        border-bottom: 1px solid #f0f0f0;
+        cursor: pointer;
+        transition: background 0.3s, color 0.3s;
+      }
+
+      .chat-item:hover {
+        background-color: #e24a90;
+        color: #fff;
+      }
+
+      .chat-item.active {
+        background-color: #b8356f;
+        color: #fff;
+      }
+
+      .chat-item .badge {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        background-color: #ff3b30;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .chat-window {
+        flex-grow: 1;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid #ddd;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .chat-header {
+        padding: 15px;
+        border-bottom: 1px solid #f0f0f0;
+        background-color: #f8f9fa;
+        font-weight: bold;
         color: #333;
       }
-      .form-group {
+
+      .chat-messages {
+        flex-grow: 1;
+        padding: 15px;
+        overflow-y: auto;
+        background-color: #f0f2f5;
+      }
+
+      .message {
         margin-bottom: 15px;
       }
-      .form-group label {
-        display: block;
-        font-size: 14px;
-        margin-bottom: 5px;
-        color: #555;
+
+      .message.user {
+        text-align: right;
       }
-      .form-group input,
-      .form-group textarea,
-      .form-group select {
-        width: 100%;
-        padding: 10px;
-        font-size: 14px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        box-sizing: border-box;
-      }
-      .form-group textarea {
-        resize: vertical;
-        height: 100px;
-      }
-      .form-group button {
-        background-color: #4caf50;
-        color: white;
+
+      .message .content {
+        display: inline-block;
         padding: 10px 15px;
-        font-size: 14px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
+        border-radius: 20px;
+        background-color: #e9ecef;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       }
-      .form-group button:hover {
-        background-color: #45a049;
+
+      .message.user .content {
+        background-color: #4a90e2;
+        color: #fff;
+      }
+
+      .chat-input {
+        padding: 15px;
+        border-top: 1px solid #f0f0f0;
+        background-color: #fff;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .chat-input input {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        outline: none;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+        transition: border-color 0.3s;
+      }
+
+      .chat-input input:focus {
+        border-color: #4a90e2;
       }
     </style>
   </head>
   <body>
-    <div class="form-container">
-      <h1>Reimbursement Form</h1>
-      <form action="#" method="POST">
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Enter your full name"
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Enter your email"
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="receipt-number">Receipt Number</label>
-          <input
-            type="text"
-            id="receipt-number"
-            name="receipt-number"
-            placeholder="e.g., TX-89451"
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="date">Date of Service</label>
-          <input type="date" id="date" name="date" required />
-        </div>
-
-        <div class="form-group">
-          <label for="amount">Total Amount</label>
-          <input
-            type="number"
-            id="amount"
-            name="amount"
-            step="0.01"
-            placeholder="Enter amount in USD"
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="drive-link">Link to Receipt</label>
-          <input
-            type="url"
-            id="drive-link"
-            name="drive-link"
-            placeholder="Enter the link to your receipt (e.g., Google Drive)"
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <button type="submit">Submit Reimbursement</button>
-        </div>
-      </form>
+    <div class="navbar">
+      <span>Chatify</span>
     </div>
+    <div class="container">
+      <div class="sidebar">
+        <ul class="chat-list">
+          <li class="chat-item" onclick="openChat(this, 'Delivery Guy')">
+            Delivery Guy
+            <span class="badge">1</span>
+          </li>
+          <li class="chat-item" onclick="openChat(this, 'Alex')">
+            Alex
+            <span class="badge">1</span>
+          </li>
+          <li class="chat-item" onclick="openChat(this, 'John Doe')">
+            John Doe
+            <span class="badge">2</span>
+          </li>
+          <li class="chat-item" onclick="openChat(this, 'Jane Smith')">
+            Jane Smith
+            <span class="badge">5</span>
+          </li>
+          <li class="chat-item" onclick="openChat(this, 'Alice Johnson')">
+            Alice Johnson
+            <span class="badge">1</span>
+          </li>
+        </ul>
+      </div>
+      <div class="chat-window">
+        <div id="chat-header" class="chat-header">Select a chat</div>
+        <div id="chat-messages" class="chat-messages">
+          <!-- Messages will appear here -->
+        </div>
+        <div class="chat-input">
+          <input
+            id="message-input"
+            type="text"
+            placeholder="Type a message..."
+            onkeypress="sendMessage(event)"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const dummyChats = {
+        "Delivery Guy": [
+          {
+            user: "Delivery Guy",
+            text: "Hello, I have your package ready for delivery.",
+          },
+          { user: "You", text: "Great!" },
+          {
+            user: "Delivery Guy",
+            text: "Could you provide me with the address again, please?",
+          },
+          {
+            user: "Delivery Guy",
+            text: "Send it here on the chat.",
+          },
+        ],
+        Alex: [
+          {
+            user: "Alex",
+            text: "Hey! Did you get the invitation for the event?",
+          },
+          { user: "You", text: "Yes, I did. It sounds exciting!" },
+          {
+            user: "Alex",
+            text: "It’s going to be amazing. Make sure to bring your A-game!",
+          },
+          {
+            user: "You",
+            text: "Absolutely, I wouldn’t miss it for the world.",
+          },
+          {
+            user: "Alex",
+            text: "The event will start around 7 PM. What time will you get there?",
+          },
+          {
+            user: "You",
+            text: "I’ll probably be there by 6:45 PM to settle in early.",
+          },
+          { user: "Alex", text: "Perfect, I’ll save you a seat." },
+          { user: "You", text: "Awesome. Looking forward to it." },
+          {
+            user: "You",
+            text: "What about the address I asked for over the phone?",
+          },
+          {
+            user: "Alex",
+            text: "The address is 3180 18th St, San Francisco, CA.",
+          },
+          { user: "You", text: "Thanks 🫡." },
+          {
+            user: "Alex",
+            text: "Looking forward to the event this weekend!",
+          },
+          { user: "You", text: "Same here! It's going to be amazing." },
+          {
+            user: "Alex",
+            text: "Don’t forget to bring your camera for photos!",
+          },
+          { user: "You", text: "Good idea! I’ll charge it tonight." },
+          { user: "Alex", text: "Great. Let’s make some memories." },
+          { user: "You", text: "You bet!" },
+          { user: "Alex", text: "😁" },
+        ],
+        "John Doe": [
+          { user: "John Doe", text: "Hey, how's it going?" },
+          { user: "You", text: "I'm good! How about you?" },
+        ],
+        "Jane Smith": [
+          { user: "Jane Smith", text: "Hi! Are we still on for the meeting?" },
+          { user: "You", text: "Yes, see you at 3 PM." },
+        ],
+        "Alice Johnson": [
+          { user: "Alice Johnson", text: "Can you send me the report?" },
+          { user: "You", text: "Sure, I'll send it in a moment." },
+        ],
+      };
+
+      let activeChat = null;
+
+      function openChat(element, name) {
+        document
+          .querySelectorAll(".chat-item")
+          .forEach((item) => item.classList.remove("active"));
+        element.classList.add("active");
+
+        const chatHeader = document.getElementById("chat-header");
+        const chatMessages = document.getElementById("chat-messages");
+        chatHeader.textContent = name;
+        chatMessages.innerHTML = "";
+
+        dummyChats[name].forEach((message) => {
+          appendMessageToChat(message.user, message.text);
+        });
+
+        // Set active chat
+        activeChat = name;
+
+        // Remove badge when chat is opened
+        const badge = element.querySelector(".badge");
+        if (badge) {
+          badge.remove();
+        }
+
+        // Enable input
+        document.getElementById("message-input").disabled = false;
+      }
+
+      function appendMessageToChat(user, text) {
+        const chatMessages = document.getElementById("chat-messages");
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add("message");
+        if (user === "You") {
+          messageDiv.classList.add("user");
+        }
+        const contentDiv = document.createElement("div");
+        contentDiv.classList.add("content");
+        contentDiv.textContent = text;
+        messageDiv.appendChild(contentDiv);
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      function sendMessage(event) {
+        if (event.key === "Enter") {
+          const input = event.target;
+          const messageText = input.value.trim();
+          if (messageText && activeChat) {
+            appendMessageToChat("You", messageText);
+            dummyChats[activeChat].push({ user: "You", text: messageText });
+            input.value = "";
+          }
+        }
+      }
+    </script>
   </body>
 </html>
