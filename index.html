@@ -3,136 +3,171 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Job Portal</title>
+    <title>Company Needs Assessment</title>
     <style>
+      * {
+        box-sizing: border-box;
+      }
       body {
-        margin: 0;
         font-family: Arial, sans-serif;
-        background: linear-gradient(to bottom right, #4facfe, #00f2fe);
-        color: #333;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
       }
-
-      .container {
-        background: white;
-        border-radius: 15px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        padding: 20px 40px;
-        max-width: 500px;
-        width: 100%;
-      }
-
       header {
+        background-color: #007bff;
+        color: white;
+        padding: 20px 0;
         text-align: center;
-        margin-bottom: 20px;
       }
-
       header h1 {
         margin: 0;
-        color: #4facfe;
-        font-size: 2em;
       }
-
-      header p {
-        margin: 5px 0 20px;
-        color: #555;
+      .content {
+        max-width: 800px;
+        margin: 20px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       }
-
-      form {
-        display: flex;
-        flex-direction: column;
+      h2 {
+        color: #333;
       }
-
+      p {
+        line-height: 1.6;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
       input,
       textarea,
       select {
-        border: 2px solid #4facfe;
-        border-radius: 10px;
+        width: 100%;
         padding: 10px;
-        margin-bottom: 15px;
-        font-size: 1em;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
       }
-
-      input:focus,
-      textarea:focus,
-      select:focus {
-        outline: none;
-        border-color: #00f2fe;
-        box-shadow: 0 0 5px #00f2fe;
-      }
-
       button {
-        background: #4facfe;
+        background-color: #28a745;
         color: white;
         border: none;
-        border-radius: 10px;
-        padding: 10px;
-        font-size: 1em;
+        padding: 10px 20px;
+        border-radius: 4px;
         cursor: pointer;
-        transition: background 0.3s;
       }
-
       button:hover {
-        background: #00f2fe;
+        background-color: #218838;
       }
-
-      .job-listing {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 20px;
-      }
-
-      .job-listing label {
-        margin-bottom: 5px;
-        color: #555;
-        font-size: 0.9em;
-      }
-
-      .tooltip {
-        font-size: 0.9em;
-        color: #888;
+      footer {
+        background-color: #333;
+        color: white;
         text-align: center;
-      }
-
-      .info {
-        font-size: 12px;
+        padding: 10px 0;
+        margin-top: 20px;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <header>
-        <h1>Job Portal</h1>
-        <p>Your gateway to amazing opportunities</p>
-        <p class="info">Enter the following details to proceed.</p>
-      </header>
-      <form action="#" method="POST">
-        <input type="text" name="name" placeholder="Your Full Name" required />
-        <input
-          type="email"
-          name="email"
-          placeholder="Your Email Address"
-          required
-        />
-        <select name="job-category" required>
-          <option value="" disabled selected>Select Job Category</option>
-          <option value="IT">IT & Software</option>
-          <option value="Healthcare">Healthcare</option>
-          <option value="Education">Education</option>
-          <option value="Finance">Finance</option>
-        </select>
-        <textarea
-          name="experience"
-          placeholder="Describe Your Work Experience"
-          rows="5"
-          required
-        ></textarea>
-        <button type="submit">Next</button>
+    <header>
+      <h1>Welcome to OAISB</h1>
+    </header>
+
+    <div class="content">
+      <h2>Needs Assessment Objectives</h2>
+      <p>
+        The purpose of this needs assessment is to identify key strengths,
+        challenges, and opportunities within our team and organization. By
+        gathering feedback, we aim to:
+      </p>
+      <ul>
+        <li>Understand areas of improvement and growth.</li>
+        <li>Develop actionable strategies for skill enhancement.</li>
+        <li>Ensure alignment with company goals and values.</li>
+        <li>Enhance overall operational efficiency and team performance.</li>
+      </ul>
+
+      <h2>Provide Your Feedback</h2>
+      <form action="submit_needs_assessment.php" method="post">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="department">Department</label>
+          <select id="department" name="department" required>
+            <option value="product-development">Product Development</option>
+            <option value="operations">Operations</option>
+            <option value="marketing">Marketing</option>
+            <option value="hr">Human Resources</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="strengths">Strengths</label>
+          <textarea
+            id="strengths"
+            name="strengths"
+            rows="4"
+            placeholder="Describe identified strengths..."
+            required
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="challenges">Challenges</label>
+          <textarea
+            id="challenges"
+            name="challenges"
+            rows="4"
+            placeholder="Describe identified challenges..."
+            required
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="opportunities">Opportunities</label>
+          <textarea
+            id="opportunities"
+            name="opportunities"
+            rows="4"
+            placeholder="Describe identified opportunities..."
+            required
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="recommendations">Recommendations</label>
+          <textarea
+            id="recommendations"
+            name="recommendations"
+            rows="4"
+            placeholder="Provide recommendations for improvement..."
+            required
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="comments">Additional Comments</label>
+          <textarea
+            id="comments"
+            name="comments"
+            rows="4"
+            placeholder="Any additional feedback or comments..."
+          ></textarea>
+        </div>
+        <button type="submit">Submit Assessment</button>
       </form>
-      <p class="tooltip">All fields are mandatory.</p>
     </div>
+
+    <footer>
+      <p>&copy; 2025 OAISB. All Rights Reserved.</p>
+    </footer>
   </body>
 </html>
